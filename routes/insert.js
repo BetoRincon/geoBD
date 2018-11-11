@@ -13,4 +13,16 @@ router.get('/points/:lat/:long', (req, res) => {
     res.send('listo');
 })
 
+router.use('/', (req, res) => {
+    console.log(req.query);
+    let id = JSON.stringify(req.headers["user-agent"]);
+    let { lon, lat, ruta } = req.query;
+    // let long = req.params.long;
+    // let lat = req.params.lat;
+    console.log(`lat: ${lat} long: ${lon} id: ${id}`);
+    database.insertPoints(lat, lon);
+    res.send('listo');
+
+})
+
 module.exports = router;
